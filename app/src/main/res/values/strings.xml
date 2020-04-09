@@ -5,5 +5,7 @@
     <!--activity_main-->
     <string name="search_for_repository">Search for repository</string>
 
+    <!--repository_item-->
+    <string name="repository_name">Repository name</string>
 
 </resources>

@@ -40,4 +40,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/repoListRecyclerList"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recycler_view_height"
+        android:layout_marginTop="@dimen/recycler_view_margin_top"
+        app:layout_constraintTop_toBottomOf="@+id/displayText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/repository_item" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
