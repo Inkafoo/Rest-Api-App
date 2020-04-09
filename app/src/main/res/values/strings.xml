@@ -1,0 +1,9 @@
+<resources>
+    <!--app-->
+    <string name="app_name">EL Passion</string>
+
+    <!--activity_main-->
+    <string name="search_for_repository">Search for repository</string>
+
+
+</resources>

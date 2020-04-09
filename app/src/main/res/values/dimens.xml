@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--activity_main-->
+    <dimen name="search_text_size">24sp</dimen>
+    <dimen name="layout_padding">10dp</dimen>
+    <dimen name="display_text_size">24sp</dimen>
+    <dimen name="search_edit_text_margin_top">12dp</dimen>
+    <dimen name="display_text_view_margin_top">90dp</dimen>
+
+
+
+</resources>
