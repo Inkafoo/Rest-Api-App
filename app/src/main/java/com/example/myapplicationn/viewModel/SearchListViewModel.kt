@@ -8,10 +8,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplicationn.GetRepositoriesUseCase
 import com.example.myapplicationn.model.Repository
+import com.example.myapplicationn.model.RepositoryResponse
 
-class SearchListViewModel(private val context: Context,  val getRepositoriesUseCase: GetRepositoriesUseCase) : ViewModel() {
+class SearchListViewModel(
+    private val context: Context,
+    val getRepositoriesUseCase: GetRepositoriesUseCase
+) : ViewModel() {
 
-    val repositoriesList = MutableLiveData<Collection<Repository>>()
+    val repositoriesList = MutableLiveData<RepositoryResponse>()
     private val textLiveData = MutableLiveData<String>()
 
     fun setString(text: String) {
@@ -28,6 +32,6 @@ class SearchListViewModel(private val context: Context,  val getRepositoriesUseC
     }
 
     private  fun showMessage(text: String) {
-        Toast.makeText(context, text, Toast.LENGTH_LONG ).show()
+        Toast.makeText(context, text, Toast.LENGTH_LONG).show()
     }
 }

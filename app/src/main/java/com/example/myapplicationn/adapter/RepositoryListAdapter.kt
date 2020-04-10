@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationn.R
 import com.example.myapplicationn.model.Repository
+import com.example.myapplicationn.model.RepositoryResponse
 
 class RepositoryListAdapter(
     private val context: Context
@@ -28,15 +29,15 @@ class RepositoryListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val repository = repositories[position]
 
-        holder.repositoryName.text = repository.fullName
+        holder.repositoryName.text = repository.name
     }
 
-    fun setRepositories(repositories: Collection<Repository>) {
-        if (repositories.isNotEmpty()) {
+    fun setRepositories(repositories: RepositoryResponse) {
+        if (this.repositories.isNotEmpty()) {
             this.repositories.clear()
         }
 
-        this.repositories.addAll(repositories)
+        this.repositories.addAll(repositories.list)
         notifyDataSetChanged()
     }
 
