@@ -9,10 +9,11 @@
     <dimen name="display_text_view_margin_top">5dp</dimen>
     <dimen name="recycler_view_height">0dp</dimen>
     <dimen name="recycler_view_margin_top">10dp</dimen>
+    <dimen name="recycler_view_margin_bottom">10dp</dimen>
 
     <!--repository_item-->
     <dimen name="repo_text_size">20sp</dimen>
     <dimen name="repo_text_view_padding">10dp</dimen>
-    <dimen name="repo_text_view_margin_top">10dp</dimen>
+    <dimen name="repo_layout_margin_bottom">10dp</dimen>
 
 </resources>
