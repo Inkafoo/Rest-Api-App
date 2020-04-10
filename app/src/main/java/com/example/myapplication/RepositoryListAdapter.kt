@@ -1,21 +1,24 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RepositoryListAdapter() : RecyclerView.Adapter<RepositoryListAdapter.ViewHolder>() {
+class RepositoryListAdapter(
+    private val context: Context
+) : RecyclerView.Adapter<RepositoryListAdapter.ViewHolder>() {
 
     private val repositories = mutableListOf<Repository>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val repositoryName = itemView.findViewById<TextView>(R.id.repoTitleTextView)
+        val repositoryName: TextView = itemView.findViewById<TextView>(R.id.repoTitleTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.repository_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.repository_item, parent, false))
     }
 
     override fun getItemCount() = repositories.size
@@ -26,5 +29,13 @@ class RepositoryListAdapter() : RecyclerView.Adapter<RepositoryListAdapter.ViewH
         holder.repositoryName.text = repository.name
     }
 
+    fun setRepositories(repositories: List<Repository>) {
+        if (repositories.isNotEmpty()) {
+            this.repositories.clear()
+        }
+
+        this.repositories.addAll(repositories)
+        notifyDataSetChanged()
+    }
 
 }
