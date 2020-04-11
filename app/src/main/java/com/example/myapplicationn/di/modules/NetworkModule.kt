@@ -1,6 +1,7 @@
-package com.example.myapplicationn.di
+package com.example.myapplicationn.di.modules
 
-import com.example.myapplicationn.GitHubApi
+import com.example.myapplicationn.helpers.API_URL
+import com.example.myapplicationn.interfaces.GitHubApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,7 +25,7 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(get<OkHttpClient>())

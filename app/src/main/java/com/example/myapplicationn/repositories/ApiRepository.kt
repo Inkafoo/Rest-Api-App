@@ -1,7 +1,7 @@
-package com.example.myapplicationn
+package com.example.myapplicationn.repositories
 
-import com.example.myapplicationn.model.Repository
-import com.example.myapplicationn.model.RepositoryResponse
+import com.example.myapplicationn.models.RepositoryResponse
+import com.example.myapplicationn.interfaces.GitHubApi
 
 class ApiRepository(private val api: GitHubApi) {
 

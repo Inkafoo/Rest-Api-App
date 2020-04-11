@@ -1,37 +1,36 @@
 package com.example.myapplicationn.viewModel
 
 import android.content.Context
-import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplicationn.GetRepositoriesUseCase
-import com.example.myapplicationn.model.Repository
-import com.example.myapplicationn.model.RepositoryResponse
+import com.example.myapplicationn.repositories.GetRepositoriesUseCase
+import com.example.myapplicationn.models.RepositoryResponse
 
 class SearchListViewModel(
-    private val context: Context,
-    val getRepositoriesUseCase: GetRepositoriesUseCase
+    val getRepositoriesUseCase: GetRepositoriesUseCase,
+    val context: Context
 ) : ViewModel() {
 
-    val repositoriesList = MutableLiveData<RepositoryResponse>()
-    private val textLiveData = MutableLiveData<String>()
+    private val repositoriesList = MutableLiveData<RepositoryResponse>()
+    private val filterTextLiveData = MutableLiveData<String>()
+    private val errorLiveData = MutableLiveData<String>()
 
-    fun setString(text: String) {
-        textLiveData.value = text
+
+    fun getErrorMessage() = errorLiveData
+    fun getRepositoriesList() = repositoriesList
+    fun getFilter() = filterTextLiveData
+
+    fun setTextAsFilter(text: String) {
+        filterTextLiveData.value = text
     }
 
-    fun getString() : LiveData<String> = textLiveData
-
-    fun getRepositoriesList()  {
-        getRepositoriesUseCase(textLiveData.value.toString(), viewModelScope) { result ->
-            result.onSuccess { repositoriesList.value = it }
-            result.onFailure { showMessage(it.message.toString()) }
+    fun getRepositories()  {
+        if(filterTextLiveData.value.toString().isNotEmpty()) {
+            getRepositoriesUseCase(filterTextLiveData.value.toString(), viewModelScope) { result ->
+                result.onSuccess { repositoriesList.value = it }
+                result.onFailure { errorLiveData.value = it.message.toString() }
+            }
         }
-    }
-
-    private  fun showMessage(text: String) {
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show()
     }
 }

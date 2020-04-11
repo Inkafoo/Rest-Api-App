@@ -4,12 +4,11 @@
     <!--activity_main-->
     <dimen name="search_text_size">24sp</dimen>
     <dimen name="layout_padding">10dp</dimen>
-    <dimen name="display_text_size">24sp</dimen>
     <dimen name="search_edit_text_margin_top">12dp</dimen>
-    <dimen name="display_text_view_margin_top">5dp</dimen>
     <dimen name="recycler_view_height">0dp</dimen>
-    <dimen name="recycler_view_margin_top">10dp</dimen>
-    <dimen name="recycler_view_margin_bottom">10dp</dimen>
+    <dimen name="recycler_view_margin_top">20dp</dimen>
+    <dimen name="recycler_view_margin_bottom">30dp</dimen>
+    <dimen name="drawable_icon_padding">7dp</dimen>
 
     <!--repository_item-->
     <dimen name="repo_text_size">20sp</dimen>

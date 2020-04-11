@@ -1,4 +1,4 @@
-package com.example.myapplicationn.adapter
+package com.example.myapplicationn.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationn.R
-import com.example.myapplicationn.model.Repository
-import com.example.myapplicationn.model.RepositoryResponse
+import com.example.myapplicationn.models.Repository
+import com.example.myapplicationn.models.RepositoryResponse
 
 class RepositoryListAdapter(
     private val context: Context
@@ -33,11 +33,14 @@ class RepositoryListAdapter(
     }
 
     fun setRepositories(repositories: RepositoryResponse) {
-        if (this.repositories.isNotEmpty()) {
-            this.repositories.clear()
-        }
+        this.repositories.clear()
 
         this.repositories.addAll(repositories.list)
+        notifyDataSetChanged()
+    }
+
+    fun clearList() {
+        this.repositories.clear()
         notifyDataSetChanged()
     }
 

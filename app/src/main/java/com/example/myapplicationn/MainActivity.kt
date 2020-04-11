@@ -1,23 +1,27 @@
 package com.example.myapplicationn
 
-import com.example.myapplicationn.adapter.RepositoryListAdapter
+import com.example.myapplicationn.adapters.RepositoryListAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
-import com.example.myapplicationn.di.appModule
-import com.example.myapplicationn.di.networkModule
+import com.example.myapplicationn.di.components.Messaging
+import com.example.myapplicationn.di.modules.appModule
+import com.example.myapplicationn.di.modules.networkModule
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import com.example.myapplicationn.viewModel.SearchListViewModel
+import com.example.myapplicationn.helpers.MAIN_ACTIVITY_TAG
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val searchListViewModel: SearchListViewModel by viewModel()
-    private val repoListAdapter: RepositoryListAdapter by inject()
+    private val repositoryListAdapter: RepositoryListAdapter by inject()
+    private val messaging: Messaging by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,30 +29,49 @@ class MainActivity : AppCompatActivity() {
 
         initKoin()
         initRecyclerView()
-        handleTextDisplaying()
 
+        handlingTextWatcher()
 
-        searchListViewModel.repositoriesList.observe(this, Observer { repositories ->
-            repositories.let {
-                repoListAdapter.setRepositories(repositories)
-            }
-        })
-
+        observeFetchedRepositoryList()
+        observeErrorMessages()
     }
 
-    private fun handleTextDisplaying() {
-        searchRepoEditText.doAfterTextChanged {
-                searchListViewModel.setString(it.toString())
-                searchListViewModel.getRepositoriesList()
-        }
-
-        searchListViewModel.getString().observe(this, Observer {
-            displayText.text = it
+    private fun observeFetchedRepositoryList() {
+        searchListViewModel.getRepositoriesList().observe(this, Observer {
+            it.let {
+                repositoryListAdapter.setRepositories(it)
+            }
         })
+    }
+
+    private fun handlingTextWatcher() {
+        searchRepoEditText.doAfterTextChanged {
+            if(it.toString().isNotEmpty()) {
+                sendRequestForRepositories(it.toString())
+            } else {
+               repositoryListAdapter.clearList()
+            }
+        }
+    }
+
+    private fun sendRequestForRepositories(filter: String) {
+        searchListViewModel.setTextAsFilter(filter.trim())
+        searchListViewModel.getRepositories()
+        Log.i(MAIN_ACTIVITY_TAG, searchListViewModel.getFilter().value.toString())
+    }
+
+    private fun observeErrorMessages() {
+        searchListViewModel.getErrorMessage().observe(this, Observer{
+            showError(it)
+        })
+    }
+
+    private fun showError(errorMessage: String) {
+        messaging.showErrorToast(errorMessage)
     }
 
     private fun initRecyclerView() {
-        repoListRecyclerList.adapter = repoListAdapter
+        repoListRecyclerList.adapter = repositoryListAdapter
     }
 
     private fun initKoin() {

@@ -1,7 +1,6 @@
-package com.example.myapplicationn
+package com.example.myapplicationn.interfaces
 
-import com.example.myapplicationn.model.Repository
-import com.example.myapplicationn.model.RepositoryResponse
+import com.example.myapplicationn.models.RepositoryResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
