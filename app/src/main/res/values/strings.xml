@@ -1,9 +1,10 @@
 <resources>
     <!--app-->
-    <string name="app_name">EL Passion</string>
+    <string name="app_name">App</string>
 
     <!--activity_main-->
     <string name="search_for_repository">Search for repository</string>
+    <string name="no_results_found">No results found</string>
 
     <!--repository_item-->
     <string name="repository_name">Repository name</string>

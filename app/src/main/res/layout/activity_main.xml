@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/layout_padding"
-    android:layout_marginEnd="@dimen/layout_padding"
-    tools:context=".MainActivity">
+    android:paddingStart="@dimen/layout_padding"
+    android:paddingEnd="@dimen/layout_padding"
+    tools:context=".view.MainActivity">
 
     <EditText
         android:id="@+id/searchRepoEditText"
@@ -37,6 +37,7 @@
         android:layout_marginTop="@dimen/recycler_view_margin_top"
         android:layout_marginBottom="@dimen/recycler_view_margin_bottom"
         app:layout_constraintTop_toBottomOf="@+id/searchRepoEditText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

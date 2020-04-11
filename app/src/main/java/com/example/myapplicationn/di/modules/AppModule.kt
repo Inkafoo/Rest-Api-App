@@ -16,6 +16,6 @@ val appModule = module {
     single { GetRepositoriesUseCase(get()) }
     single { Messaging(androidContext()) }
 
-    viewModel { SearchListViewModel(get(), androidContext()) }
+    viewModel { SearchListViewModel(get()) }
 
 }

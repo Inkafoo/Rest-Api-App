@@ -1,4 +1,4 @@
-package com.example.myapplicationn
+package com.example.myapplicationn.view
 
 import com.example.myapplicationn.adapters.RepositoryListAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Observer
+import com.example.myapplicationn.R
 import com.example.myapplicationn.di.components.Messaging
 import com.example.myapplicationn.di.modules.appModule
 import com.example.myapplicationn.di.modules.networkModule
@@ -38,8 +39,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeFetchedRepositoryList() {
         searchListViewModel.getRepositoriesList().observe(this, Observer {
-            it.let {
+            if(it.list.isNotEmpty()) {
                 repositoryListAdapter.setRepositories(it)
+            } else {
+                repositoryListAdapter.clearList()
+                showMessage("normal", getString(R.string.no_results_found))
             }
         })
     }
@@ -62,12 +66,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeErrorMessages() {
         searchListViewModel.getErrorMessage().observe(this, Observer{
-            showError(it)
+            showMessage("error", it)
         })
     }
 
-    private fun showError(errorMessage: String) {
-        messaging.showErrorToast(errorMessage)
+    private fun showMessage(type: String, message: String) {
+        messaging.showToast(type, message)
     }
 
     private fun initRecyclerView() {

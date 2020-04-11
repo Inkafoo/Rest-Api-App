@@ -3,7 +3,6 @@ package com.example.myapplicationn.di.modules
 import com.example.myapplicationn.helpers.API_URL
 import com.example.myapplicationn.interfaces.GitHubApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -12,14 +11,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
 
-    single<Interceptor> {
+    single {
         HttpLoggingInterceptor()
             .apply { level = HttpLoggingInterceptor.Level.BODY }
     }
 
     single {
         OkHttpClient.Builder()
-            .addInterceptor(get<Interceptor>())
+            .addInterceptor(get<HttpLoggingInterceptor>())
             .build()
     }
 

@@ -1,6 +1,5 @@
 package com.example.myapplicationn.viewModel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,8 +7,7 @@ import com.example.myapplicationn.repositories.GetRepositoriesUseCase
 import com.example.myapplicationn.models.RepositoryResponse
 
 class SearchListViewModel(
-    val getRepositoriesUseCase: GetRepositoriesUseCase,
-    val context: Context
+    private val getRepositoriesUseCase: GetRepositoriesUseCase
 ) : ViewModel() {
 
     private val repositoriesList = MutableLiveData<RepositoryResponse>()
