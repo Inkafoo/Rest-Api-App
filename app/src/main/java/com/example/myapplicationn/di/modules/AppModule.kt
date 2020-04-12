@@ -10,7 +10,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-
 val appModule = module {
 
     single { RepositoryListAdapter(androidContext()) }
@@ -20,5 +19,4 @@ val appModule = module {
     single { Network().getApi() }
 
     viewModel { SearchListViewModel(get()) }
-
 }

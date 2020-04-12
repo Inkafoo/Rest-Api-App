@@ -1,4 +1,4 @@
-package com.example.myapplicationn.view
+package com.example.myapplicationn.views
 
 import com.example.myapplicationn.adapters.RepositoryListAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +17,12 @@ import com.example.myapplicationn.viewModel.SearchListViewModel
 import com.example.myapplicationn.helpers.MAIN_ACTIVITY_TAG
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/**
+ * RECRUITMENT TASK
+ * APP CREATED BY KAROL FURTAK
+ * CONTACT: karol.furtak24@gmail.com
+ */
+
 class MainActivity : AppCompatActivity() {
 
     private val searchListViewModel: SearchListViewModel by viewModel()
@@ -32,12 +38,12 @@ class MainActivity : AppCompatActivity() {
 
         handlingTextWatcher()
 
-        observeFetchedRepositoryList()
+        observeRepositoryList()
         observeErrorMessages()
-
     }
 
-    private fun observeFetchedRepositoryList() {
+
+    private fun observeRepositoryList() {
         searchListViewModel.getRepositoriesList().observe(this, Observer {
             if(it.list.isNotEmpty()) {
                 repositoryListAdapter.setRepositories(it)

@@ -32,38 +32,35 @@
                 android:paddingEnd="@dimen/text_view_padding_end"
                 android:paddingBottom="@dimen/text_view_padding_bottom"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/repoDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/repository_description"
+                app:layout_constraintTop_toBottomOf="@id/repoNameTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:theme="@style/RepositoryDetailTextView" />
+
+            <TextView
+                android:id="@+id/repoLanguageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/repository_language"
+                app:layout_constraintTop_toBottomOf="@id/repoDescriptionTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                android:theme="@style/RepositoryDetailTextView" />
 
             <TextView
                 android:id="@+id/repoIdTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/repository_id"
-                app:layout_constraintTop_toBottomOf="@id/repoNameTextView"
+                app:layout_constraintTop_toBottomOf="@id/repoLanguageTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:theme="@style/RepositoryDetailTextView" />
 
-            <TextView
-                android:id="@+id/repoDescriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/repository_description"
-                app:layout_constraintTop_toBottomOf="@id/repoIdTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:theme="@style/RepositoryDetailTextView" />
-
-            <TextView
-                android:id="@+id/repoPrivateTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/repository_private"
-                app:layout_constraintTop_toBottomOf="@id/repoDescriptionTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:theme="@style/RepositoryDetailTextView" />
 
             <TextView
                 android:id="@+id/repoStarsTextView"
@@ -74,13 +71,9 @@
                 android:drawablePadding="@dimen/stars_icon_padding"
                 android:gravity="center_vertical"
                 android:paddingBottom="@dimen/stars_text_view_padding_bottom"
-                app:layout_constraintTop_toBottomOf="@id/repoPrivateTextView"
+                app:layout_constraintTop_toBottomOf="@id/repoIdTextView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:theme="@style/RepositoryDetailTextView" />
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

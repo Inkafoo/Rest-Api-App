@@ -9,6 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationn.R
 import com.example.myapplicationn.models.Repository
 import com.example.myapplicationn.models.RepositoryResponse
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class RepositoryListAdapter(
     private val context: Context
@@ -18,9 +23,9 @@ class RepositoryListAdapter(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val repoName: TextView = itemView.findViewById(R.id.repoNameTextView)
-        val repoId: TextView = itemView.findViewById(R.id.repoIdTextView)
         val repoDescription: TextView = itemView.findViewById(R.id.repoDescriptionTextView)
-        val repoPrivate: TextView = itemView.findViewById(R.id.repoPrivateTextView)
+        val repoLanguage: TextView = itemView.findViewById(R.id.repoLanguageTextView)
+        val repoId: TextView = itemView.findViewById(R.id.repoIdTextView)
         val repoStars: TextView = itemView.findViewById(R.id.repoStarsTextView)
     }
 
@@ -33,12 +38,11 @@ class RepositoryListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val repository = repositories[position]
 
-
         holder.apply {
             repoName.text = repository.name
-            repoId.text = context.getString(R.string.repository_id, repository.id.toString() )
             repoDescription.text = context.getString(R.string.repository_description, repository.description)
-            repoPrivate.text = context.getString(R.string.repository_private, repository.private.toString())
+            repoLanguage.text = context.getString(R.string.repository_language, repository.language)
+            repoId.text = context.getString(R.string.repository_id, repository.id.toString())
             repoStars.text = context.getString(R.string.repository_stars, repository.stars.toString())
         }
 
