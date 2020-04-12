@@ -17,7 +17,11 @@ class RepositoryListAdapter(
     private val repositories = mutableListOf<Repository>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val repositoryName: TextView = itemView.findViewById(R.id.repoTitleTextView)
+        val repoName: TextView = itemView.findViewById(R.id.repoNameTextView)
+        val repoId: TextView = itemView.findViewById(R.id.repoIdTextView)
+        val repoDescription: TextView = itemView.findViewById(R.id.repoDescriptionTextView)
+        val repoPrivate: TextView = itemView.findViewById(R.id.repoPrivateTextView)
+        val repoStars: TextView = itemView.findViewById(R.id.repoStarsTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +33,15 @@ class RepositoryListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val repository = repositories[position]
 
-        holder.repositoryName.text = repository.name
+
+        holder.apply {
+            repoName.text = repository.name
+            repoId.text = context.getString(R.string.repository_id, repository.id.toString() )
+            repoDescription.text = context.getString(R.string.repository_description, repository.description)
+            repoPrivate.text = context.getString(R.string.repository_private, repository.private.toString())
+            repoStars.text = context.getString(R.string.repository_stars, repository.stars.toString())
+        }
+
     }
 
     fun setRepositories(repositories: RepositoryResponse) {

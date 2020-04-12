@@ -4,10 +4,12 @@ import com.example.myapplicationn.repositories.ApiRepository
 import com.example.myapplicationn.repositories.GetRepositoriesUseCase
 import com.example.myapplicationn.adapters.RepositoryListAdapter
 import com.example.myapplicationn.di.components.Messaging
+import com.example.myapplicationn.di.components.Network
 import com.example.myapplicationn.viewModel.SearchListViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+
 
 val appModule = module {
 
@@ -15,6 +17,7 @@ val appModule = module {
     single { ApiRepository(get()) }
     single { GetRepositoriesUseCase(get()) }
     single { Messaging(androidContext()) }
+    single { Network().getApi() }
 
     viewModel { SearchListViewModel(get()) }
 

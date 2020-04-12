@@ -1,36 +1,37 @@
-package com.example.myapplicationn.di.modules
+package com.example.myapplicationn.di.components
 
 import com.example.myapplicationn.helpers.API_URL
 import com.example.myapplicationn.interfaces.GitHubApi
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val networkModule = module {
+class Network {
 
-    single {
-        HttpLoggingInterceptor()
+    private fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
+       return HttpLoggingInterceptor()
             .apply { level = HttpLoggingInterceptor.Level.BODY }
     }
 
-    single {
-        OkHttpClient.Builder()
-            .addInterceptor(get<HttpLoggingInterceptor>())
+    private fun getOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(getHttpLoggingInterceptor())
             .build()
     }
 
-    single {
-        Retrofit.Builder()
+    private fun getRetrofit(): Retrofit {
+        return  Retrofit.Builder()
             .baseUrl(API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .client(get<OkHttpClient>())
+            .client(getOkHttpClient())
             .build()
     }
 
-    single { get<Retrofit>().create(GitHubApi::class.java) }
+    fun getApi (): GitHubApi {
+        return getRetrofit().create(GitHubApi::class.java)
+    }
 
 }

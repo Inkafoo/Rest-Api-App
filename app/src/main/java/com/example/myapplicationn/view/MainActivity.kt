@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import com.example.myapplicationn.R
 import com.example.myapplicationn.di.components.Messaging
 import com.example.myapplicationn.di.modules.appModule
-import com.example.myapplicationn.di.modules.networkModule
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -35,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         observeFetchedRepositoryList()
         observeErrorMessages()
+
     }
 
     private fun observeFetchedRepositoryList() {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 repositoryListAdapter.setRepositories(it)
             } else {
                 repositoryListAdapter.clearList()
-                showMessage("normal", getString(R.string.no_results_found))
+                showMessage("info", getString(R.string.no_results_found))
             }
         })
     }
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     private fun initKoin() {
         startKoin {
             androidContext(this@MainActivity)
-            modules(listOf(appModule, networkModule))
+            modules(appModule)
         }
     }
 
