@@ -2,7 +2,7 @@
 Simple Android application allowing user to search for GitHub repositories.
 
 ### Presentation
-<a href="https://gifyu.com/image/l9am"><img src="https://s4.gifyu.com/images/app_video_presentation.gif" width="300" /></a>
+<a href="https://gifyu.com/image/lERH"><img src="https://s6.gifyu.com/images/Screenrecorder-2020-04-13-23-00.gif" width="300" /></a>
 
 ### Built With/ Powered by
 * [Android](https://www.android.com/) - Operating System
