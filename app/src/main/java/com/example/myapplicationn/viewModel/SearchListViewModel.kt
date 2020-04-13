@@ -24,7 +24,10 @@ class SearchListViewModel(
 
     fun getRepositories()  {
         if(filterTextLiveData.value.toString().isNotEmpty()) {
-            getRepositoriesUseCase(filterTextLiveData.value.toString(), viewModelScope) { result ->
+            getRepositoriesUseCase(
+                filterTextLiveData.value.toString(),
+                viewModelScope
+            ) { result ->
                 result.onSuccess { repositoryList.value = it }
                 result.onFailure { errorLiveData.value = it.message.toString() }
             }

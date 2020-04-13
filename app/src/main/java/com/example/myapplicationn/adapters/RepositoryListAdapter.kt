@@ -27,7 +27,11 @@ class RepositoryListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.repository_item, parent, false))
+        return ViewHolder(LayoutInflater.from(context)
+            .inflate(
+                R.layout.repository_item,
+                parent,
+                false))
     }
 
     override fun getItemCount() = repositoryList.size
@@ -38,7 +42,10 @@ class RepositoryListAdapter(
         setRepositoryDetails(repositoryItem, holder)
     }
 
-    private fun setRepositoryDetails(repository: Repository, holder: ViewHolder) {
+    private fun setRepositoryDetails(
+        repository: Repository,
+        holder: ViewHolder
+    ) {
         holder.apply {
             repoName.text = repository.name
             repoDescription.text = context.getString(R.string.repository_description, repository.description)

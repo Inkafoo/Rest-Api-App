@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         observeErrorMessages()
     }
 
-
     private fun observeRepositoryList() {
         searchListViewModel.getRepositoriesList().observe(this, Observer {
             if(it.list.isNotEmpty()) {
@@ -76,7 +75,10 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun showMessage(type: String, message: String) {
+    private fun showMessage(
+        type: String,
+        message: String
+    ) {
         messaging.showToast(type, message)
     }
 
@@ -90,5 +92,4 @@ class MainActivity : AppCompatActivity() {
             modules(appModule)
         }
     }
-
 }
