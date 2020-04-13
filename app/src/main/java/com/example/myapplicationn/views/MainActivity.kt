@@ -46,9 +46,10 @@ class MainActivity : AppCompatActivity() {
     private fun observeRepositoryList() {
         searchListViewModel.getRepositoriesList().observe(this, Observer {
             if(it.list.isNotEmpty()) {
-                repositoryListAdapter.setRepositories(it)
+                repositoryListAdapter.setRepositoryList(it)
+                Log.i(MAIN_ACTIVITY_TAG, repositoryListAdapter.itemCount.toString())
             } else {
-                repositoryListAdapter.clearList()
+                repositoryListAdapter.clearRepositoryList()
                 showMessage("info", getString(R.string.no_results_found))
             }
         })
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             if(it.toString().isNotEmpty()) {
                 sendRequestForRepositories(it.toString())
             } else {
-               repositoryListAdapter.clearList()
+               repositoryListAdapter.clearRepositoryList()
             }
         }
     }
@@ -67,7 +68,6 @@ class MainActivity : AppCompatActivity() {
     private fun sendRequestForRepositories(filter: String) {
         searchListViewModel.setTextAsFilter(filter.trim())
         searchListViewModel.getRepositories()
-        Log.i(MAIN_ACTIVITY_TAG, searchListViewModel.getFilter().value.toString())
     }
 
     private fun observeErrorMessages() {

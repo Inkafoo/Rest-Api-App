@@ -10,9 +10,9 @@ class Messaging(private val context: Context) {
      */
     fun showToast(type: String, message: String) {
         when(type){
-            "error" ->  Toasty.error(context, message, Toasty.LENGTH_SHORT).show()
-            "info" ->  Toasty.info(context, message, Toasty.LENGTH_SHORT).show()
-            else ->  Toasty.normal(context, message, Toasty.LENGTH_SHORT).show()
+            "error" ->  Toasty.error(context, message, Toasty.LENGTH_LONG).show()
+            "info" ->  Toasty.info(context, message, Toasty.LENGTH_LONG).show()
+            else ->  Toasty.normal(context, message, Toasty.LENGTH_LONG).show()
         }
     }
 }

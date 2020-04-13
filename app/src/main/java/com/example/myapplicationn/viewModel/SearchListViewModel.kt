@@ -10,14 +10,13 @@ class SearchListViewModel(
     private val getRepositoriesUseCase: GetRepositoriesUseCase
 ) : ViewModel() {
 
-    private val repositoriesList = MutableLiveData<RepositoryResponse>()
+    private val repositoryList = MutableLiveData<RepositoryResponse>()
     private val filterTextLiveData = MutableLiveData<String>()
     private val errorLiveData = MutableLiveData<String>()
 
 
     fun getErrorMessage() = errorLiveData
-    fun getRepositoriesList() = repositoriesList
-    fun getFilter() = filterTextLiveData
+    fun getRepositoriesList() = repositoryList
 
     fun setTextAsFilter(text: String) {
         filterTextLiveData.value = text
@@ -26,7 +25,7 @@ class SearchListViewModel(
     fun getRepositories()  {
         if(filterTextLiveData.value.toString().isNotEmpty()) {
             getRepositoriesUseCase(filterTextLiveData.value.toString(), viewModelScope) { result ->
-                result.onSuccess { repositoriesList.value = it }
+                result.onSuccess { repositoryList.value = it }
                 result.onFailure { errorLiveData.value = it.message.toString() }
             }
         }

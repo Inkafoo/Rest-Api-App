@@ -10,7 +10,6 @@ class GetRepositoriesUseCase(private val repository: ApiRepository) {
         coroutineScope: CoroutineScope,
         onResult: (Result<RepositoryResponse>) -> Unit
     ) : Job {
-
         return coroutineScope.launch {
              val result = withContext(Dispatchers.IO) {
                  runCatching { repository.getRepositories(key) }
@@ -18,4 +17,5 @@ class GetRepositoriesUseCase(private val repository: ApiRepository) {
              onResult(result)
          }
     }
+
 }
